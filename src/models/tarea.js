@@ -17,7 +17,10 @@ Tarea.init(
       type: DataTypes.STRING(200),
       allowNull: false,
     },
-    
+    imagen: {
+      type: DataTypes.STRING(200),
+      allowNull: true,
+    },
   },
   {
     sequelize,
@@ -27,7 +30,7 @@ Tarea.init(
 );
 
 const sync = async ()=> {
-    await Tarea.sync({ force: false });
+    await Tarea.sync({ alter: false });
 }
 
 sync()

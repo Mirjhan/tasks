@@ -16,7 +16,6 @@ const getUsuario = async (req, res) => {
     const { id } = req.params
     try {
         const result = await Usuario.findByPk(id)
-        // TODO: ver que el resultado no sea nulo
         if (result == null) return res.status(404).json({ message: 'Usuario nulo.' })
         res.status(200).json(result)
     } catch (error) {

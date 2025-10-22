@@ -2,17 +2,6 @@ const Tarea = require("../models/tarea")
 
 const getTareas = async (req, res) => {
 
-    /*
-        Tarea.findAll()
-        .then((data) => {
-            res.status(200).json(data)
-        })
-        .catch((err) => {
-            res.status(500).json(err)
-        })
-    */
-   //
-
     try {
         const result = await Tarea.findAll()  
         res.status(200).json(result)
@@ -28,14 +17,17 @@ const getTarea = (req, res) => {
 
 const createTarea = async (req, res) => {
     const { nombre, descripcion } = req.body
+    const { filename } = req.file
+
     try {
         const newTarea = await Tarea.create({
             nombre: nombre,
             descripcion: descripcion,
+            imagen: filename,
         })
         res.status(200).json(newTarea)
     } catch (error) {
-        res.status(500).json(error)
+       res.status(500).json(error)
     }
 }
 

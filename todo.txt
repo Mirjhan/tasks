@@ -1,0 +1,15 @@
+// TODO: analizar todos los errores al envio de imagenes de multer.
+/*router.put('/updateImage',
+
+    (req, res, next) => {
+        upload(req, res, (err) => {
+            if (err instanceof multer.MulterError) {
+                res.status(404).send(err + 'Upload failed due to multer error');
+            } else if (err) {
+                res.status(404).send(err + 'Upload failed due to unknown error');
+            }
+            next()
+        })
+    }
+
+    , updateAvatar) */
