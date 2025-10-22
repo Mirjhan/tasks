@@ -9,7 +9,7 @@ const {
     createEstadoTarea,
     deleteEstadoTarea,
     updateEstadoTarea
-} = require('./../controllers/estado_tarea_controller')
+} = require('../controllers/estado_tarea_controller')
 
 router.get('/', getEstadoTareas)
 router.get('/:id',getEstadoTarea)

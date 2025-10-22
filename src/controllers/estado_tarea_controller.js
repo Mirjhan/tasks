@@ -1,20 +1,58 @@
+const EstadoTarea = require("../models/estado_tarea")
 
-const getEstadoTareas = (req, res) => {
-    res.json('Listar todos los estados de tarea')
+const getEstadoTareas =  async(req, res) => {
+    try {
+        const result = await EstadoTarea.findAll()
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json(error)
+    }
 }
-const getEstadoTarea = (req, res) => {
+const getEstadoTarea = async (req, res) => {
     const {id} = req.params
-    res.json(`Lista el estado de tarea #${id}`)
+    try {
+        const result = await EstadoTarea.findByPk(id)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json(error)
+        
+    }
 }
-const createEstadoTarea = (req, res) => {
-    res.json('Crear estados de tareas')
+const createEstadoTarea = async (req, res) => {
+    const {nombre, descripcion } = req.body
+    try {
+        const newEstadoTarea = await EstadoTarea.create({
+            nombre: nombre,
+            descripcion: descripcion,
+        })
+        res.status(200).json(newEstadoTarea)
+    } catch (error) {
+        res.status(500).json(error)
+    }
 }
-const deleteEstadoTarea = (req, res) => {
+const deleteEstadoTarea = async (req, res) => {
     const {id} = req.params
-    res.json(`Eliminar el estado de tarea #${id}`)
+    try {
+        const result = await EstadoTarea.findByPk(id)
+        await result.destroy()
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json(error)
+    }
 }
-const updateEstadoTarea = (req, res) => {
-    res.json('Actualizar estado de tarea')
+const updateEstadoTarea =async (req, res) => {
+    try {
+        const {id, nombre, descripcion } = req.body
+        const result = await EstadoTarea.findByPk(id)
+        result.set({
+            nombre: nombre,
+            descripcion: descripcion,
+        })
+        await result.save()
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(500).json(error)
+    }
 }
 module.exports = {
     getEstadoTareas,
