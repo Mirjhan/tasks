@@ -1,10 +1,9 @@
 const { sequelize } = require('./connection')
-const { DataTypes, Model} = require('sequelize')
+const { DataTypes, Model } = require('sequelize')
 
-class EstadoTarea extends Model {}
+class EstadoTarea extends Model { }
 
-EstadoTarea.init(
-{
+EstadoTarea.init({
     nombre: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -13,16 +12,12 @@ EstadoTarea.init(
         type: DataTypes.STRING(200),
         allowNull: false,
     }
-},
-{
+}, {
     sequelize,
     modelName: 'EstadoTarea',
-}
-)
+})
 
-const sync =  async() => {
-    await EstadoTarea.sync({force: false})
-}
+const sync = async () => await EstadoTarea.sync({ force: false })
 sync()
 
 module.exports = EstadoTarea
